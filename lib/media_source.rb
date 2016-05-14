@@ -6,6 +6,7 @@ class MediaSource
   attr_reader :media_files
 
   def initialize(uri)
+    puts "uri: #{uri}"
     @uri = URI(uri)
   end
 
