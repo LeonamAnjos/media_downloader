@@ -2,12 +2,20 @@ GEM
   remote: https://rubygems.org/
   specs:
     cocoapods-downloader (1.0.0)
+    mini_portile2 (2.0.0)
+    nokogiri (1.6.7.2)
+      mini_portile2 (~> 2.0.0.rc2)
+    redis (3.3.0)
+    ruby-prof (0.15.9)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   cocoapods-downloader (~> 1.0)
+  nokogiri (~> 1.6)
+  redis (~> 3.3)
+  ruby-prof (~> 0.15.9)
 
 BUNDLED WITH
    1.12.3

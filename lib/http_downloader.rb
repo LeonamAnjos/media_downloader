@@ -8,6 +8,8 @@ class HttpDownloader
   end
 
   def download_file(file_name)
+    raise 'Invalid file name!' if file_name.nil?
+
     downloader = Pod::Downloader.for_target(
         target_path(file_name),
         { http: http_file_reference(file_name) })
