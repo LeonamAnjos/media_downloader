@@ -1,2 +1,4 @@
 media_source: 'http://feed.omgili.com/5Rh5AMTrc4Pv/mainstream/posts/'
 download_path: '/tmp/nuvi/'
+media_extension_name: '.xml'
+media_content_list: 'NEWS_XML'

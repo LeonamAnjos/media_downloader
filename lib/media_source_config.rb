@@ -14,4 +14,12 @@ class MediaSourceConfig
     @config['download_path']
   end
 
+  def media_extension
+    @config['media_extension_name']
+  end
+
+  def media_content_list
+    @config['media_content_list']
+  end
+
 end
