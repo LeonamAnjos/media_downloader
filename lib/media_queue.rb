@@ -1,12 +1,11 @@
 require 'redis'
-require './lib/media_source_config'
 
 class MediaQueue
   attr_reader :redis
   attr_reader :config
 
-  def initialize
-    @config = MediaSourceConfig.new
+  def initialize(media_source_config)
+    @config = media_source_config
     @redis = Redis.new
   end
 

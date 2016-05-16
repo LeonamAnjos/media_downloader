@@ -3,13 +3,13 @@
 require 'ruby-prof'
 require './lib/http_downloader'
 require './lib/media_web_source'
-require './lib/media_source_config'
+require './lib/media_source_config_yaml'
 require './lib/loader_content'
 require './lib/media_queue'
 require 'redis'
 
 def config
-  @config ||= MediaSourceConfig.new
+  @config ||= MediaSourceConfigYaml.new
 end
 
 def download_media(args = {})
@@ -54,7 +54,7 @@ end
 
 
 
-mq = MediaQueue.new
+mq = MediaQueue.new(config)
 puts mq.queue_name
 puts mq.queue_idx
 mq.enqueue(MediaWebSource.new(config.media_source))
