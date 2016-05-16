@@ -1,6 +1,6 @@
 module MediaContentLoader
 
-  def MediaContentLoader.each_by_pattern(pattern = '')
+  def MediaContentLoader.each_media_content(pattern = '')
     Dir.glob(pattern) do |file_name|
       content = content_from(file_name)
       yield(content) if block_given?

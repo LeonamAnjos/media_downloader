@@ -1,4 +1,4 @@
-require './lib/media_source_config'
+require 'media_source_config'
 
 class MediaSourceConfigYaml
   include MediaSourceConfig
