@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require './lib/media_source'
 
-class MediaWebSource
+class MediaHttpSource
   include MediaSource
 
   attr_reader :uri

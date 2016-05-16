@@ -4,7 +4,7 @@ class HttpDownloader
 
   def initialize(args = {})
     @url = args[:url]
-    @downloads_path = args[:downloads_path]
+    @download_path = args[:download_path]
   end
 
   def download_file(file_name)
@@ -20,7 +20,7 @@ class HttpDownloader
 private
 
   def target_path(file_name)
-    @downloads_path + file_name
+    @download_path + file_name
   end
 
   def http_file_reference(file_name)

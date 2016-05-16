@@ -1,72 +1,9 @@
-#$LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
-
-require 'ruby-prof'
-require './lib/http_downloader'
-require './lib/media_web_source'
-require './lib/media_source_config_yaml'
-require './lib/loader_content'
-require './lib/media_queue'
-require 'redis'
-
-def config
-  @config ||= MediaSourceConfigYaml.new
-end
-
-def download_media(args = {})
-  url = args[:url]
-  path = args[:download_path]
-
-  options = { url: url,
-              downloads_path: path }
-
-  downloader = HttpDownloader.new(options)
-  downloader.download_file(args[:file_name])
-end
-
-def get_medias
-  ms = MediaWebSource.new(config.media_source)
-  ms.update_medias
-end
-
-def get_pattern(media_file)
-  config.download_path + media_file + '/*' + config.media_extension
-end
-
-RubyProf.start
-
-=begin
-redis = Redis.new
-
-get_medias.each do |media_file|
-  download_media url: config.media_source,
-                 download_path: config.download_path,
-                 file_name: media_file
-
-  LoaderContent.each_by_pattern(get_pattern(media_file)) do |content|
-    redis.rpush('NEWS_XML', content)
-  end
-
-  FileUtils.rm_rf(config.download_path + media_file)
-
-end
-=end
+require './enqueue_medias_task'
+require './content_loader_task'
 
 
+# Task one: enqueue media files from web source
+puts EnqueueMediasTask.perform
 
-
-mq = MediaQueue.new(config)
-puts mq.queue_name
-puts mq.queue_idx
-mq.enqueue(MediaWebSource.new(config.media_source))
-puts mq.size
-
-
-# call loader if queue.count > 0
-
-
-result = RubyProf.stop
-
-
-# print a flat profile to text
-printer = RubyProf::FlatPrinter.new(result)
-printer.print(STDOUT)
+# Task two: download media files and add content to MEDIA_XML list
+puts ContentLoaderTask.perform
