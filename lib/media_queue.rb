@@ -1,5 +1,4 @@
 require 'redis'
-require './lib/media_source'
 require './lib/media_source_config'
 
 class MediaQueue
@@ -11,10 +10,8 @@ class MediaQueue
     @redis = Redis.new
   end
 
-  def enqueue
-    ms = MediaSource.new(config.media_source)
-    ms.update_medias
-    ms.media_files.each do  |media|
+  def enqueue(source)
+    source.media_files.each do  |media|
       enqueue_media(media)
     end
   end
@@ -50,10 +47,3 @@ class MediaQueue
   end
 
 end
-
-
-mq = MediaQueue.new
-puts mq.queue_name
-puts mq.queue_idx
-mq.enqueue
-puts mq.size
