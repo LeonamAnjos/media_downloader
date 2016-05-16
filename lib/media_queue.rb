@@ -11,12 +11,14 @@ class MediaQueue
 
   def enqueue(media)
     return false if processed? media
+    return false unless redis.sadd(queue_idx, media)
 
     Resque.enqueue(ContentLoaderJob, media)
   end
 
-  def set_processed(media_file)
-    redis.set LAST_MEDIA_PROCESSED_KEY, media_file
+  def set_processed(media)
+    redis.set LAST_MEDIA_PROCESSED_KEY, media
+    redis.srem queue_idx, media
   end
 
   private
@@ -31,13 +33,8 @@ class MediaQueue
     redis.get(LAST_MEDIA_PROCESSED_KEY) || ''
   end
 
-  def queue_name
-    @queue_name ||= config.media_content_list + '_QUEUE'
-  end
-
   def queue_idx
-    @queue_idx ||= queue_name + '_IDX'
+    @queue_idx ||= config.media_content_list + '_IDX'
   end
-
 
 end

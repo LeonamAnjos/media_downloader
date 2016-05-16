@@ -2,7 +2,6 @@ GEM
   remote: https://rubygems.org/
   specs:
     cocoapods-downloader (1.0.0)
-    daemons (1.2.3)
     mini_portile2 (2.0.0)
     mono_logger (1.1.0)
     multi_json (1.12.0)
@@ -33,7 +32,6 @@ PLATFORMS
 
 DEPENDENCIES
   cocoapods-downloader (~> 1.0)
-  daemons (~> 1.2)
   nokogiri (~> 1.6)
   redis (~> 3.3)
   resque (~> 1.26)

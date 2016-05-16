@@ -14,12 +14,14 @@ class EnqueueMediasJob
 
       puts 'EnqueueMediasJob - start'
 
+      count = 0
       task.media_source.media_files.each do  |media|
-        task.media_queue.enqueue(media)
+        count += 1 if task.media_queue.enqueue(media)
       end
 
-      puts 'EnqueueMediasJob - sleeping'
+      puts "EnqueueMediasJob - more #{count} enqueued"
 
+      puts 'EnqueueMediasJob - sleeping for 60 seconds'
       sleep(60)
 
       puts 'EnqueueMediasJob - finished'
