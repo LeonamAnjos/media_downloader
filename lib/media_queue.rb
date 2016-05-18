@@ -1,5 +1,6 @@
 # coding: utf-8
 require 'resque'
+require 'content_loader_job'
 
 class MediaQueue
   attr_reader :redis

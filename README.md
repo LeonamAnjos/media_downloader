@@ -43,7 +43,25 @@ The application needs some environment information to perform. You can do it by 
 
 To run the job ___EnqueueMediasJob___:
 ```sh
-$ ruby media_downloader.rb
+$ ruby media_downloader.rb run
+```
+
+To run the job ___EnqueueMediasJob___ in background:
+```sh
+$ ruby media_downloader.rb start
+```
+
+It is possible to inform a custom configuration file by command line arguments:
+```sh
+$ ruby media_downloader.rb run -- --config=custom_config.yml
+```
+To check the job status if running in background:
+```sh
+$ ruby media_downloader.rb status
+```
+To stop the job if running in background:
+```sh
+$ ruby media_downloader.rb stop
 ```
 
 To load one instance of the job ___ContentLoaderJob___:
@@ -69,6 +87,5 @@ $ resque-web
 
 ### TO-DO
 - Allow to inform redis connection configuration
-- Execute ___EnqueueMediasJob___ in background (maybe using Daemons gem)
-- Tests
+- More tests
 - Logging

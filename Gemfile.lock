@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     cocoapods-downloader (1.0.0)
+    daemons (1.2.3)
     metaclass (0.0.4)
     mini_portile2 (2.0.0)
     mocha (1.1.0)
@@ -39,6 +40,7 @@ PLATFORMS
 
 DEPENDENCIES
   cocoapods-downloader (~> 1.0)
+  daemons (~> 1.2)
   mocha (~> 1.1)
   nokogiri (~> 1.6)
   rake (~> 11.1)

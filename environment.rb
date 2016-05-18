@@ -1,5 +1,6 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-jobs = File.expand_path('../jobs', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-$LOAD_PATH.unshift(jobs) unless $LOAD_PATH.include?(jobs)
+[   File.expand_path('..', __FILE__),
+    File.expand_path('../lib', __FILE__),
+    File.expand_path('../jobs', __FILE__)].each do |path|
+  $LOAD_PATH.unshift(path) unless $LOAD_PATH.include?(path)
+end
