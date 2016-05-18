@@ -14,14 +14,20 @@ def config_file
   File.expand_path(config)
 end
 
-config = config_file
-
+job = EnqueueMediasJob.new(config_file)
 
 # Task one: enqueue media files from web source
 Daemons.run_proc('enqueue_medias_job') do
-  EnqueueMediasJob.perform(config)
+  loop do
+    puts 'EnqueueMediasJob - start'
+
+    medias_enqueued = job.do
+
+    puts "EnqueueMediasJob - more #{medias_enqueued} enqueued"
+
+    puts 'EnqueueMediasJob - sleeping for 60 seconds'
+    sleep(60)
+    puts 'EnqueueMediasJob - finished'
+  end
+
 end
-
-# Task two: download media files and add content to MEDIA_XML list
-#-> ContentLoaderJob.perform(media_file): resque job execute this method
-

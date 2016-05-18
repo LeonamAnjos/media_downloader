@@ -9,33 +9,21 @@ class EnqueueMediasJob
   attr_reader :config
   attr_reader :media_queue
 
-  def self.perform(config_file)
-    task = EnqueueMediasJob.new(config_file)
+  def initialize(config_file)
+    @config = MediaSourceConfigYaml.new(config_file)
+    @media_queue = MediaQueue.new(config, Redis.new)
+  end
 
-    loop do
-      puts 'EnqueueMediasJob - start'
-
-      count = 0
-      task.media_source.media_files.each do  |media|
-        count += 1 if task.media_queue.enqueue(media)
-      end
-
-      puts "EnqueueMediasJob - more #{count} enqueued"
-      puts 'EnqueueMediasJob - sleeping for 60 seconds'
-      sleep(60)
-      puts 'EnqueueMediasJob - finished'
+  def do
+    count = 0
+    media_source.media_files.each do  |media|
+      count += 1 if media_queue.enqueue(media)
     end
+    count
   end
 
   def media_source
     MediaHttpSource.new(config.media_source)
-  end
-
-  private
-
-  def initialize(config_file)
-    @config = MediaSourceConfigYaml.new(config_file)
-    @media_queue = MediaQueue.new(config, Redis.new)
   end
 
 end
