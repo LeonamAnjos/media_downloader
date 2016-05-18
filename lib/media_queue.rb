@@ -12,7 +12,7 @@ class MediaQueue
 
   def enqueue(media)
     return false if processed? media
-    return false unless redis.sadd(queue_idx, media)
+    return false unless enqueued?(media)
 
     Resque.enqueue(ContentLoaderJob, media)
   end
@@ -36,6 +36,10 @@ class MediaQueue
 
   def queue_idx
     @queue_idx ||= config.media_content_list + '_IDX'
+  end
+
+  def enqueued?(media)
+    redis.sadd(queue_idx, media)
   end
 
 end

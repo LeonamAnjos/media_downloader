@@ -8,7 +8,7 @@ task 'resque:setup' do
 end
 
 Rake::TestTask.new do |t|
-  t.libs << 'test'
+  t.libs << 'test' << 'jobs'
   t.pattern = 'test/**/*_test.rb'
   t.verbose = true
 end
