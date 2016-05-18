@@ -1,4 +1,5 @@
-require 'media_source_config'
+# coding: utf-8
+require_relative 'media_source_config'
 
 class MediaSourceConfigYaml
   include MediaSourceConfig

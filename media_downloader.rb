@@ -1,6 +1,8 @@
-require './environment'
-require 'jobs/enqueue_medias_job'
-require 'jobs/content_loader_job'
+# coding: utf-8
+
+require_relative 'environment'
+require 'enqueue_medias_job'
+require 'content_loader_job'
 
 
 # Task one: enqueue media files from web source

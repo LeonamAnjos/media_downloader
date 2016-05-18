@@ -1,3 +1,4 @@
+# coding: utf-8
 module MediaContentLoader
 
   def MediaContentLoader.each_media_content(pattern = '')

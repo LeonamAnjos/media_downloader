@@ -1,6 +1,7 @@
+# coding: utf-8
 require 'resque/tasks'
 
 task 'resque:setup' do
-  require './environment'
+  require_relative 'environment'
   require 'content_loader_job'
 end

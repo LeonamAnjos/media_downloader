@@ -1,6 +1,7 @@
+# coding: utf-8
 require 'nokogiri'
 require 'open-uri'
-require './lib/media_source'
+require 'media_source'
 
 class MediaHttpSource
   include MediaSource

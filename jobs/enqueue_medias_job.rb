@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'redis'
 require 'media_queue'
 require 'media_source_config_yaml'
