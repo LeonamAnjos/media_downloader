@@ -4,7 +4,7 @@ require 'yaml'
 module MediaSourceConfig
 
   def config
-    @config || []
+    @config || {}
   end
 
   def media_source
