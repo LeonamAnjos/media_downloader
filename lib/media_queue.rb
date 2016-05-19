@@ -3,6 +3,9 @@ require 'resque'
 require 'content_loader_job'
 
 class MediaQueue
+
+  LAST_MEDIA_PROCESSED_KEY = 'NEWS_XML_LAST_PROCESSED'
+  
   attr_reader :redis
   attr_reader :config
 
@@ -24,8 +27,6 @@ class MediaQueue
   end
 
   private
-
-  LAST_MEDIA_PROCESSED_KEY = 'NEWS_XML_LAST_PROCESSED'
 
   def processed?(media)
     media <= last_media_processed
