@@ -5,7 +5,7 @@ require 'content_loader_job'
 class MediaQueue
 
   LAST_MEDIA_PROCESSED_KEY = 'NEWS_XML_LAST_PROCESSED'
-  
+
   attr_reader :redis
   attr_reader :config
 
