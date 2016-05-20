@@ -2,15 +2,15 @@
 
 ### Introduction
 
-__NUVI__ is a Social Media Analytics company. Part of our business is aggregating data from various data sources. Your project is to write a software application that aggregates news data and publishes it to Redis.
+This project is a software that aggregates news data and publishes it to Redis.
 
 ### Getting Started
 
 This URL (http://bitly.com/nuvi-plz) is an http folder containing a list of zip files. Each zip file contains a bunch of xml files. Each xml file contains 1 news report.
 
-Your application needs to download all of the zip files, extract out the xml files, and publish the content of each xml file to a redis list called “NEWS_XML”.
+The software download all of the zip files, extract out the xml files, and publish the content of each xml file to a redis list called “NEWS_XML”. 
 
-Make the application idempotent. We want to be able to run it multiple times but not get duplicate data in the redis list.
+It is possible to run multiple times without duplicate data in the redis list.
 
 ### Solution
 
@@ -88,4 +88,3 @@ $ resque-web
 ### TO-DO
 - Allow to inform redis connection configuration
 - More tests
-- Logging
